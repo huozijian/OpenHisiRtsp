@@ -8,16 +8,16 @@ src/hisiComm/sample_comm_vi.o: ../src/hisiComm/sample_comm_vi.c \
  ../src/hisiComm/../hisiComm/include/../../hisiComm/include/hi_defines.h \
  ../src/hisiComm/../hisiComm/include/../../hisiComm/include/hi_math.h \
  ../src/hisiComm/../hisiComm/sample_comm.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/mpi_sys.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_comm_sys.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_common.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_errno.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_common.h \
- /media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_type.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/mpi_sys.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_comm_sys.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_common.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_errno.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_common.h \
+ /media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_type.h \
  ../src/hisiComm/../hisiComm/../hisiComm/include/hi_comm_adec.h \
  ../src/hisiComm/../hisiComm/../hisiComm/include/../../hisiComm/include/hi_comm_aio.h \
  ../src/hisiComm/../hisiComm/../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_common.h \
@@ -100,25 +100,25 @@ src/hisiComm/sample_comm_vi.o: ../src/hisiComm/sample_comm_vi.c \
 
 ../src/hisiComm/../hisiComm/sample_comm.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/mpi_sys.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/mpi_sys.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_comm_sys.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_comm_sys.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_common.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_common.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_errno.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_errno.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_debug.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/../../hisiComm/include/hi_type.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_common.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_common.h:
 
-/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_type.h:
+/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/include/../../hisiComm/include/hi_type.h:
 
 ../src/hisiComm/../hisiComm/../hisiComm/include/hi_comm_adec.h:
 

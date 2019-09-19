@@ -7,7 +7,7 @@
 #include "net/HisiMediaSource.h"
 #include "debugComm.h"
 #include "base/Logging.h"
-
+#include <unistd.h>
 
 HisiMediaSource* HisiMediaSource::createNew(UsageEnvironment* env, std::string dev)
 {
@@ -23,7 +23,7 @@ HisiMediaSource::HisiMediaSource(UsageEnvironment* env, std::string& dev) :
 	vencThreadCtrl.mMutex = Mutex::createNew();
     bool ret;
 
-    setFps(22);
+    setFps(30);
 
     ret = videoInit();
     assert(ret == true);
@@ -60,7 +60,13 @@ void HisiMediaSource::readFrame()
     AVFrame* frame = mAVFrameInputQueue.front();
     frame->mFrameSize=0;
     while(frame->mFrameSize==0)
-    	getFrameFromH264Mem(frame->mBuffer, frame->mFrameSize);
+    {
+    	getFrameFromH264Queue(frame->mBuffer, frame->mFrameSize);
+    	usleep(1.0f/(float)mFps*1000);
+    }
+
+    	//getFrameFromH264Mem(frame->mBuffer, frame->mFrameSize);
+
     if(frame->mFrameSize < 0)
         return;
 
@@ -240,8 +246,6 @@ END_VENC_1080P_CLASSIC_1:	//vi stop
 END_VENC_1080P_CLASSIC_0:	//system exit
 	SAMPLE_COMM_SYS_Exit();
 	return false;
-
-    
 }
 
 bool HisiMediaSource::videoExit()
@@ -291,6 +295,28 @@ static void flushVencStreamToMem(H264Data *h264Data, VENC_STREAM_S* pstStream)
     	memcpy(pData,pstStream->pstPack[i].pu8Addr + pstStream->pstPack[i].u32Offset,len);
     	pData+=len;
     }
+}
+
+static void flushVencStreamToQueue(H264DataQueue *h264queue, VENC_STREAM_S* pstStream)
+{
+	H264Data *pH264Data = new H264Data();
+	pH264Data->dataSize=0;
+
+    //计算当前视频包的大小
+    for (unsigned int i = 0; i < pstStream->u32PackCount; i++)
+    {
+    	pH264Data->dataSize+=pstStream->pstPack[i].u32Len - pstStream->pstPack[i].u32Offset;
+    }
+    pH264Data->pData=(unsigned char *)malloc(pH264Data->dataSize);
+    unsigned char *pData = pH264Data->pData;
+    //填充数据
+    for (unsigned int i = 0; i < pstStream->u32PackCount; i++)
+    {
+    	int len =pstStream->pstPack[i].u32Len - pstStream->pstPack[i].u32Offset;
+    	memcpy(pData,pstStream->pstPack[i].pu8Addr + pstStream->pstPack[i].u32Offset,len);
+    	pData+=len;
+    }
+    h264queue->push(pH264Data);
 }
 
 void* vencStreamProcess(void* p)
@@ -429,8 +455,9 @@ void* vencStreamProcess(void* p)
                      step 2.5 : save frame to file
                     *******************************************************/
                     {
-                        MutexLockGuard mutexLockGuard(pstPara->mMutex);
-                        flushVencStreamToMem(&pstPara->h264Data,&stStream);
+                        //MutexLockGuard mutexLockGuard(pstPara->mMutex);
+                       // flushVencStreamToMem(&pstPara->h264Data,&stStream);
+                        flushVencStreamToQueue(&pstPara->h264Queue,&stStream);
                     }
 
 
@@ -456,23 +483,34 @@ void* vencStreamProcess(void* p)
 
     return NULL;
 }
-void HisiMediaSource::getFrameFromH264Mem(uint8_t* frame, int& size)
+
+void HisiMediaSource::getFrameFromH264Queue(uint8_t* frame, int& size)
 {
-	MutexLockGuard mutexLockGuard(vencThreadCtrl.mMutex);
-	if(vencThreadCtrl.h264Data.dataSize>FRAME_MAX_SIZE)
+	PH264Data pH264Data =NULL;
+	vencThreadCtrl.h264Queue.pop(pH264Data);
+	if(pH264Data==NULL)
 	{
-		RTSP_SYS_DEBUG("getFrameFromH264Mem failed,vencThreadCtrl.h264Data.dataSize>FRAME_MAX_SIZE\n");
+		//RTSP_SYS_DEBUG("getFrameFromH264Queue failed,pH264Data==NULL\n");
 		size=0;
 		return;
 	}
-	if(vencThreadCtrl.h264Data.dataSize==0)
+	if(pH264Data->dataSize>FRAME_MAX_SIZE)
+	{
+		RTSP_SYS_DEBUG("getFrameFromH264Queue failed,vencThreadCtrl.h264Data.dataSize>FRAME_MAX_SIZE\n");
+		size=0;
+		return;
+	}
+	if(pH264Data->dataSize==0)
 	{
 		size=0;
 		return;
 	}
-	memcpy(frame,vencThreadCtrl.h264Data.pData,vencThreadCtrl.h264Data.dataSize);
-	size = vencThreadCtrl.h264Data.dataSize;
+	memcpy(frame,pH264Data->pData,pH264Data->dataSize);
+	size = pH264Data->dataSize;
+	free(pH264Data->pData);
+	delete pH264Data;
 }
+
 bool HisiMediaSource::h264Init()
 {
 

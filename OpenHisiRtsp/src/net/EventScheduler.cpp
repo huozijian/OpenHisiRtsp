@@ -128,12 +128,15 @@ void EventScheduler::loop()
         mPoller->handleEvent();
     }
 }
+void EventScheduler::quit()
+{
+	mQuit=true;
+}
 
 void EventScheduler::wakeup()
 {
     uint64_t one = 1;
-    int ret;
-    ret = ::write(mWakeupFd, &one, sizeof(one));
+    ::write(mWakeupFd, &one, sizeof(one));
 }
 
 void EventScheduler::handleTriggerEvents()

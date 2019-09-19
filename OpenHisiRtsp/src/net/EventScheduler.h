@@ -29,6 +29,7 @@ public:
 
     void loop();
     void wakeup();
+    void quit();
 
 private:
     EventScheduler(PollerType type, int fd);

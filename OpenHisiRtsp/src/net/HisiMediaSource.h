@@ -13,14 +13,51 @@ typedef struct __H264_DATA__
 {
 	unsigned char *pData;
 	int dataSize;
-}H264Data;
+}H264Data,*PH264Data;
+
+class H264DataQueue
+{
+public :
+	int size;
+	std::vector<PH264Data> datas;
+	H264DataQueue()
+	{
+		size=0;
+		//mMutex=Mutex::createNew();
+	}
+	~H264DataQueue()
+	{
+		//delete mMutex;
+	}
+	void push(PH264Data pData)
+	{
+		//MutexLockGuard mutexLockGuard(mMutex);
+		datas.push_back(pData);
+	}
+	void pop(PH264Data &pData)
+	{
+		//MutexLockGuard mutexLockGuard(mMutex);
+		//printf("datas====%d\r\n",datas.size());
+		if(datas.size()<=0)
+		{
+			pData=NULL;
+		}
+		else
+		{
+			pData=datas[0];
+			datas.erase(datas.begin());
+		}
+	}
+//private:
+	//Mutex* mMutex;
+};
 class VencThreadCtrl
 {
 public:
 	bool bThreadStart;
 	pthread_t hnd;
 	Mutex* mMutex;
-	H264Data h264Data;
+	H264DataQueue h264Queue;
 };
 
 
@@ -37,20 +74,11 @@ protected:
     virtual void readFrame();
 
 private:
-    struct Nalu
-    {
-        Nalu(uint8_t* data, int size) : mData(data), mSize(size)
-        { }
-
-        uint8_t* mData;
-        int mSize;
-    };
-
     bool videoInit();
     bool videoExit();
     bool h264Init();
     bool h264Exit();
-    void getFrameFromH264Mem(uint8_t* frame, int &size);
+    void getFrameFromH264Queue(uint8_t* frame, int &size);
 
 private:
     UsageEnvironment* mEnv;
@@ -62,8 +90,6 @@ private:
     VencThreadCtrl vencThreadCtrl;
     int mCsp;
     int mPts;
-
-    std::queue<Nalu> mNaluQueue;
 };
 
 #endif //_Hisi_MEDIA_SOURCE_H_

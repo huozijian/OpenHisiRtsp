@@ -185,7 +185,6 @@ bool MediaSession::startMulticast()
     int rtpSockfd2, rtcpSockfd2;
     uint16_t rtpPort1, rtcpPort1;
     uint16_t rtpPort2, rtcpPort2;
-    bool ret;
 
     rtpSockfd1 = sockets::createUdpSock();
     assert(rtpSockfd1 > 0);

@@ -18,7 +18,7 @@ int Buffer::read(int fd)
     vec[1].iov_len = sizeof(extrabuf);
     // when there is enough space in this buffer, don't read into extrabuf.
     // when extrabuf is used, we read 128k-1 bytes at most.
-    const int iovcnt = (writable < sizeof(extrabuf)) ? 2 : 1;
+    const int iovcnt = (writable < (int)sizeof(extrabuf)) ? 2 : 1;
     const int n = sockets::readv(fd, vec, iovcnt);
     if (n < 0)
     {

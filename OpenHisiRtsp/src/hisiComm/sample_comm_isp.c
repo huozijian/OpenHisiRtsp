@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 #endif /* End of #ifdef __cplusplus */
-
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

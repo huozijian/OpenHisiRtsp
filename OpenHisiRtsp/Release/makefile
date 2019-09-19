@@ -48,7 +48,7 @@ all: OpenHisiRtsp
 OpenHisiRtsp: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	arm-hisiv500-linux-g++ -L/opt/hisi-linux/x86-arm/arm-hisiv500-linux/target/usr/lib -L"/media/hzj_jason/_dde_data/workspaceEclipse/OpenHisiRtsp/src/hisiComm/lib" -o "OpenHisiRtsp" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-hisiv500-linux-g++ -L/opt/hisi-linux/x86-arm/arm-hisiv500-linux/target/usr/lib -L"/media/hzj_jason/Work/workspaceEclipse/OpenHisiRtsp/src/hisiComm/lib" -o "OpenHisiRtsp" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
